@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 import java.awt.GridLayout;
 import java.awt.Image;
 import java.io.IOException;
@@ -6,10 +5,6 @@ import java.util.HashMap;
 import javax.imageio.ImageIO;
 import javax.swing.ImageIcon;
 import javax.swing.JPanel;
-=======
-import javax.swing.*;
-import java.awt.*;
->>>>>>> master
 
 public class Board extends JPanel {
     private Tile[][] tiles;
