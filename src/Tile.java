@@ -2,16 +2,14 @@ import java.awt.Color;
 import java.util.HashMap;
 import javax.swing.JButton;
 
-public class Tile extends JButton
-{
+public class Tile extends JButton {
     private final Position position;
     private static HashMap<Position, Tile> board;
     private Peice peice;
 
-    public Tile(Position position, Peice peice)
-    {        
-        super((position.getRow() + 1) + "" + (position.getCol() + 1));
-        Color bg = ((position.getRow() + position.getCol()) % 2 == 0) ? Color.WHITE : Color.BLACK;
+    public Tile(Position position, Peice peice) {
+        super();
+        Color bg = ((position.getRow() + position.getCol()) % 2 == 0) ? Color.WHITE : Color.GRAY;
         this.setBorderPainted(false);
         this.setFocusPainted(false);
         this.setBackground(bg);
