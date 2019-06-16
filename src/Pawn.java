@@ -4,6 +4,12 @@ import java.util.List;
 public class Pawn extends Peice
 {
 
+    public Pawn(Position position, Team team)
+    {
+        this.position = position;
+        this.team = team;
+    }
+
     @Override
     public List<Position> validMoves(Board board)
     {

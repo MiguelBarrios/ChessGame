@@ -2,9 +2,9 @@ import java.util.List;
 
 public abstract class Peice
 {
-    private Position position;
+    protected Position position;
 
-    private Team team;
+    protected Team team;
 
     public abstract List<Position> validMoves(Board board);
 

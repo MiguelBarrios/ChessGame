@@ -3,6 +3,12 @@ import java.util.List;
 
 public class Rook extends Peice
 {
+
+    public Rook(Position position, Team team)
+    {
+        this.position = position;
+        this.team = team;
+    }
     @Override
     public List<Position> validMoves(Board board)
     {
@@ -57,11 +63,21 @@ public class Rook extends Peice
             }
         }
 
+        //Left
+        for(int i = currentRow - 1; i >= 0; ++i)
+        {
+            if(board.getTile(i, currentCol).getPeice() == null)
+            {
+                potentialPositions.add(new Position(i, currentRow));
+            }
+            else
+            {
+                if(board.getTile(i, currentCol).getPeice().getTeam() != alliance)
+                    potentialPositions.add(new Position(i, currentCol));
+                break;
+            }
+        }
 
-
-
-
-        //TODO:  ADD END OF BOARD PROMOTION
 
 
         return potentialPositions;
