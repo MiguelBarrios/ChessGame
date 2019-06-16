@@ -6,5 +6,15 @@ public abstract class Peice
 
     private Team team;
 
-    public abstract List<Move> validMoves(Board board);
+    public abstract List<Position> validMoves(Board board);
+
+    public Position getPosition()
+    {
+        return position;
+    }
+
+    public Team getTeam()
+    {
+        return team;
+    }
 }
