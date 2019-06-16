@@ -5,22 +5,40 @@ public class Pawn extends Peice
 {
 
     @Override
-    public List<Move> validMoves(Board board)
+    public List<Position> validMoves(Board board)
     {
+        int currentRow = this.getPosition().getRow();
+        int currentCol = this.getPosition().getCol();
+        Team alliance = this.getTeam();
+
+        List<Position> potentialPositions = new ArrayList<>();
+
+        int direction;
+
         if(this.getTeam() == Team.WHITE)
+            direction = -1;
+        else
+            direction = 1;
+
+        if(board.getTile(currentRow + direction, currentCol) == null)
+            potentialPositions.add(new Position(currentRow + direction, currentCol));
+
+
+        if(currentCol != 0 && currentRow != 0 && currentRow != 7)
         {
-            List<Position> potentialMoves = new ArrayList<Position>();
+            //Attack upLeft and downLeft
+            if(board.getTile(currentRow + direction, currentCol - 1).getPeice() != null && board.getTile(currentRow + direction, currentCol - 1).getPeice().getTeam() != alliance)
+                potentialPositions.add(new Position(currentRow + direction, currentCol - 1));
 
-            Position currentPostion = this.getPosition();
-
-            if(board.getTile(currentPostion.getRow() - 1, currentPostion.getCol()).getPeice() == null)
-            {
-
-            }
-
-
+            //Attack upRight and downRight
+            if(board.getTile(currentRow + direction, currentCol + 1).getPeice() != null && board.getTile(currentRow + direction, currentCol + 1).getPeice().getTeam() != alliance)
+                potentialPositions.add(new Position(currentRow + direction, currentCol + 1));
         }
 
-        return null;
+
+        //TODO:  ADD END OF BOARD PROMOTION
+
+
+        return potentialPositions;
     }
 }
