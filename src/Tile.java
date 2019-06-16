@@ -13,6 +13,7 @@ public class Tile extends JButton {
         this.setBorderPainted(false);
         this.setFocusPainted(false);
         this.setBackground(bg);
+        this.setOpaque(true);
         this.position = position;
         this.peice = peice;
     }
