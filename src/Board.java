@@ -1,7 +1,5 @@
-import java.awt.Color;
-import java.awt.GridLayout;
-
-import javax.swing.JPanel;
+import javax.swing.*;
+import java.awt.*;
 
 public class Board extends JPanel
 {

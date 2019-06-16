@@ -1,3 +1,4 @@
+import java.util.ArrayList;
 import java.util.List;
 
 public class Pawn extends Peice
@@ -8,7 +9,15 @@ public class Pawn extends Peice
     {
         if(this.getTeam() == Team.WHITE)
         {
+            List<Position> potentialMoves = new ArrayList<Position>();
+
             Position currentPostion = this.getPosition();
+
+            if(board.getTile(currentPostion.getRow() - 1, currentPostion.getCol()).getPeice() == null)
+            {
+
+            }
+
 
         }
 
