@@ -1,23 +1,31 @@
+import java.awt.Color;
 import java.util.HashMap;
+import javax.swing.JButton;
 
-public class Tile
+public class Tile extends JButton
 {
     private final Position position;
-
-    private static HashMap<String, Tile> board;
-
+    private static HashMap<Position, Tile> board;
     private Peice peice;
 
-    public Tile(boolean occupied, Position position, Peice peice)
-    {
+    public Tile(Position position, Peice peice)
+    {        
+        super((position.getRow() + 1) + "" + (position.getCol() + 1));
+        Color bg = ((position.getRow() + position.getCol()) % 2 == 0) ? Color.WHITE : Color.BLACK;
+        this.setBorderPainted(false);
+        this.setFocusPainted(false);
+        this.setBackground(bg);
         this.position = position;
         this.peice = peice;
     }
 
+    public Tile(int row, int col) {
+        this(new Position(row, col), null);
+    }
+
     public Tile(Position position)
     {
-        this.position = position;
-        this.peice = null;
+        this(position, null);
     }
 
     private Tile(){ position = null; }
