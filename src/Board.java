@@ -1,3 +1,4 @@
+import java.awt.Color;
 import java.awt.GridLayout;
 import java.awt.Image;
 import java.io.IOException;
@@ -7,22 +8,41 @@ import javax.swing.ImageIcon;
 import javax.swing.JPanel;
 
 public class Board extends JPanel {
+    private static final long serialVersionUID = 1L;
+    private static final int SPAN = 8;
     private Tile[][] tiles;
+    private Tile selected;
     private HashMap<String, ImageIcon> images;
 
     public Board() {
         super();
-        GridLayout grid = new GridLayout(8, 8);
+        GridLayout grid = new GridLayout(SPAN, SPAN);        
         this.setLayout(grid);
-        tiles = new Tile[8][8];
-        for (int row = 0; row < 8; row++) {
-            for (int col = 0; col < 8; col++) {
-                tiles[row][col] = new Tile(row, col);
-                this.add(tiles[row][col]);
+
+        this.tiles = new Tile[SPAN][SPAN];
+        this.selected = null;
+
+        for (int row = 0; row < SPAN; row++) {
+            for (int col = 0; col < SPAN; col++) {
+                Tile tile = new Tile(row, col);
+                tile.addActionListener(e -> {
+                    if (e.getSource() instanceof Tile) {
+                        selected = (Tile) e.getSource();
+                        update();
+                        if (selected != null && selected.getPiece() != null) {
+                            for (Position move : selected.getPiece().validMoves(this)) {
+                                tiles[move.getRow()][move.getCol()].setBackground(Color.GREEN);
+                            }
+                        }
+                    }
+                });
+                tiles[row][col] = tile;
+                this.add(tile);
             }
         }
         loadImages();
         resetBoard();
+        update();
     }
 
     public void loadImages() {
@@ -71,6 +91,7 @@ public class Board extends JPanel {
         tiles[0][7].setIcon(images.get("RookB"));
         // knights
         tiles[7][1].setIcon(images.get("KnightW"));
+        tiles[7][1].setPiece(new Knight(new Position(7, 1), Team.WHITE));
         tiles[7][6].setIcon(images.get("KnightW"));
         tiles[0][1].setIcon(images.get("KnightB"));
         tiles[0][6].setIcon(images.get("KnightB"));
@@ -87,7 +108,19 @@ public class Board extends JPanel {
         tiles[0][4].setIcon(images.get("KingB"));
     }
 
+    private void update() {
+        for (Tile[] row : tiles) {
+            for (Tile tile : row) {
+                tile.update(tile == selected);
+            }
+        }
+    }
+
     public Tile getTile(int row, int col) {
         return tiles[row][col];
+    }
+
+    public ImageIcon getImage(String key) {
+        return images.get(key);
     }
 }

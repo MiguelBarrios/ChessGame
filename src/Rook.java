@@ -1,7 +1,7 @@
 import java.util.ArrayList;
 import java.util.List;
 
-public class Rook extends Peice
+public class Rook extends Piece
 {
 
     public Rook(Position position, Team team)
@@ -21,13 +21,13 @@ public class Rook extends Peice
         //forward
         for(int i = currentCol + 1; i < 8; ++i)
         {
-            if(board.getTile(currentRow, i).getPeice() == null)
+            if(board.getTile(currentRow, i).getPiece() == null)
             {
                 potentialPositions.add(new Position(currentRow, i));
             }
             else
             {
-                if(board.getTile(currentRow, i).getPeice().getTeam() != alliance)
+                if(board.getTile(currentRow, i).getPiece().getTeam() != alliance)
                     potentialPositions.add(new Position(currentRow, i));
                     break;
             }
@@ -36,13 +36,13 @@ public class Rook extends Peice
         //Backwards
         for(int i = currentCol - 1; i >= 0; --i)
         {
-            if(board.getTile(currentRow, i).getPeice() == null)
+            if(board.getTile(currentRow, i).getPiece() == null)
             {
                 potentialPositions.add(new Position(currentRow, i));
             }
             else
             {
-                if(board.getTile(currentRow, i).getPeice().getTeam() != alliance)
+                if(board.getTile(currentRow, i).getPiece().getTeam() != alliance)
                     potentialPositions.add(new Position(currentRow, i));
                 break;
             }
@@ -51,13 +51,13 @@ public class Rook extends Peice
         //Right
         for(int i = currentRow + 1; i < 8; ++i)
         {
-            if(board.getTile(i, currentCol).getPeice() == null)
+            if(board.getTile(i, currentCol).getPiece() == null)
             {
                 potentialPositions.add(new Position(i, currentRow));
             }
             else
             {
-                if(board.getTile(i, currentCol).getPeice().getTeam() != alliance)
+                if(board.getTile(i, currentCol).getPiece().getTeam() != alliance)
                     potentialPositions.add(new Position(i, currentCol));
                 break;
             }
@@ -66,13 +66,13 @@ public class Rook extends Peice
         //Left
         for(int i = currentRow - 1; i >= 0; ++i)
         {
-            if(board.getTile(i, currentCol).getPeice() == null)
+            if(board.getTile(i, currentCol).getPiece() == null)
             {
                 potentialPositions.add(new Position(i, currentRow));
             }
             else
             {
-                if(board.getTile(i, currentCol).getPeice().getTeam() != alliance)
+                if(board.getTile(i, currentCol).getPiece().getTeam() != alliance)
                     potentialPositions.add(new Position(i, currentCol));
                 break;
             }

@@ -1,7 +1,7 @@
 import java.util.ArrayList;
 import java.util.List;
 
-public class Bishop extends Peice
+public class Bishop extends Piece
 {
     public Bishop(Position position, Team team)
     {
@@ -23,11 +23,11 @@ public class Bishop extends Peice
         // up and to the Right
         for(int row = currentRow - 1, col = currentCol + 1; row >= 0 && col < 8; --row, ++col)
         {
-            if(board.getTile(row, col).getPeice() == null)
+            if(board.getTile(row, col).getPiece() == null)
                 potentialPositions.add(new Position(row, col));
             else
             {
-                if(board.getTile(row, col).getPeice().getTeam() != alliance)
+                if(board.getTile(row, col).getPiece().getTeam() != alliance)
                     potentialPositions.add(new Position(row, col));
                 break;
             }
@@ -36,11 +36,11 @@ public class Bishop extends Peice
         // up and to the Left
         for(int row = currentRow - 1, col = currentCol - 1; row >= 0 && col >= 0; --row, --col)
         {
-            if(board.getTile(row, col).getPeice() == null)
+            if(board.getTile(row, col).getPiece() == null)
                 potentialPositions.add(new Position(row, col));
             else
             {
-                if(board.getTile(row, col).getPeice().getTeam() != alliance)
+                if(board.getTile(row, col).getPiece().getTeam() != alliance)
                     potentialPositions.add(new Position(row, col));
                 break;
             }
@@ -49,11 +49,11 @@ public class Bishop extends Peice
         //down Left
         for(int row = currentRow + 1, col = currentCol - 1; row < 8 && col >= 0; ++row, --col)
         {
-            if(board.getTile(row, col).getPeice() == null)
+            if(board.getTile(row, col).getPiece() == null)
                 potentialPositions.add(new Position(row, col));
             else
             {
-                if(board.getTile(row, col).getPeice().getTeam() != alliance)
+                if(board.getTile(row, col).getPiece().getTeam() != alliance)
                     potentialPositions.add(new Position(row, col));
                 break;
             }
@@ -62,11 +62,11 @@ public class Bishop extends Peice
         //down Right
         for(int row = currentRow + 1, col = currentCol + 1; row < 8 && col < 8; ++row, ++col)
         {
-            if(board.getTile(row, col).getPeice() == null)
+            if(board.getTile(row, col).getPiece() == null)
                 potentialPositions.add(new Position(row, col));
             else
             {
-                if(board.getTile(row, col).getPeice().getTeam() != alliance)
+                if(board.getTile(row, col).getPiece().getTeam() != alliance)
                     potentialPositions.add(new Position(row, col));
                 break;
             }

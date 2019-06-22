@@ -1,7 +1,7 @@
 import java.util.ArrayList;
 import java.util.List;
 
-public class Queen extends Peice
+public class Queen extends Piece
 {
     public Queen(Position position, Team team)
     {
@@ -23,11 +23,11 @@ public class Queen extends Peice
         // up and to the Right
         for(int row = currentRow - 1, col = currentCol + 1; row >= 0 && col < 8; --row, ++col)
         {
-            if(board.getTile(row, col).getPeice() == null)
+            if(board.getTile(row, col).getPiece() == null)
                 potentialPositions.add(new Position(row, col));
             else
             {
-                if(board.getTile(row, col).getPeice().getTeam() != alliance)
+                if(board.getTile(row, col).getPiece().getTeam() != alliance)
                     potentialPositions.add(new Position(row, col));
                 break;
             }
@@ -36,11 +36,11 @@ public class Queen extends Peice
         // up and to the Left
         for(int row = currentRow - 1, col = currentCol - 1; row >= 0 && col >= 0; --row, --col)
         {
-            if(board.getTile(row, col).getPeice() == null)
+            if(board.getTile(row, col).getPiece() == null)
                 potentialPositions.add(new Position(row, col));
             else
             {
-                if(board.getTile(row, col).getPeice().getTeam() != alliance)
+                if(board.getTile(row, col).getPiece().getTeam() != alliance)
                     potentialPositions.add(new Position(row, col));
                 break;
             }
@@ -49,11 +49,11 @@ public class Queen extends Peice
         //down Left
         for(int row = currentRow + 1, col = currentCol - 1; row < 8 && col >= 0; ++row, --col)
         {
-            if(board.getTile(row, col).getPeice() == null)
+            if(board.getTile(row, col).getPiece() == null)
                 potentialPositions.add(new Position(row, col));
             else
             {
-                if(board.getTile(row, col).getPeice().getTeam() != alliance)
+                if(board.getTile(row, col).getPiece().getTeam() != alliance)
                     potentialPositions.add(new Position(row, col));
                 break;
             }
@@ -62,11 +62,11 @@ public class Queen extends Peice
         //down Right
         for(int row = currentRow + 1, col = currentCol + 1; row < 8 && col < 8; ++row, ++col)
         {
-            if(board.getTile(row, col).getPeice() == null)
+            if(board.getTile(row, col).getPiece() == null)
                 potentialPositions.add(new Position(row, col));
             else
             {
-                if(board.getTile(row, col).getPeice().getTeam() != alliance)
+                if(board.getTile(row, col).getPiece().getTeam() != alliance)
                     potentialPositions.add(new Position(row, col));
                 break;
             }
@@ -75,13 +75,13 @@ public class Queen extends Peice
         //forward
         for(int i = currentCol + 1; i < 8; ++i)
         {
-            if(board.getTile(currentRow, i).getPeice() == null)
+            if(board.getTile(currentRow, i).getPiece() == null)
             {
                 potentialPositions.add(new Position(currentRow, i));
             }
             else
             {
-                if(board.getTile(currentRow, i).getPeice().getTeam() != alliance)
+                if(board.getTile(currentRow, i).getPiece().getTeam() != alliance)
                     potentialPositions.add(new Position(currentRow, i));
                 break;
             }
@@ -90,13 +90,13 @@ public class Queen extends Peice
         //Backwards
         for(int i = currentCol - 1; i >= 0; --i)
         {
-            if(board.getTile(currentRow, i).getPeice() == null)
+            if(board.getTile(currentRow, i).getPiece() == null)
             {
                 potentialPositions.add(new Position(currentRow, i));
             }
             else
             {
-                if(board.getTile(currentRow, i).getPeice().getTeam() != alliance)
+                if(board.getTile(currentRow, i).getPiece().getTeam() != alliance)
                     potentialPositions.add(new Position(currentRow, i));
                 break;
             }
@@ -105,13 +105,13 @@ public class Queen extends Peice
         //Right
         for(int i = currentRow + 1; i < 8; ++i)
         {
-            if(board.getTile(i, currentCol).getPeice() == null)
+            if(board.getTile(i, currentCol).getPiece() == null)
             {
                 potentialPositions.add(new Position(i, currentRow));
             }
             else
             {
-                if(board.getTile(i, currentCol).getPeice().getTeam() != alliance)
+                if(board.getTile(i, currentCol).getPiece().getTeam() != alliance)
                     potentialPositions.add(new Position(i, currentCol));
                 break;
             }
@@ -120,13 +120,13 @@ public class Queen extends Peice
         //Left
         for(int i = currentRow - 1; i >= 0; ++i)
         {
-            if(board.getTile(i, currentCol).getPeice() == null)
+            if(board.getTile(i, currentCol).getPiece() == null)
             {
                 potentialPositions.add(new Position(i, currentRow));
             }
             else
             {
-                if(board.getTile(i, currentCol).getPeice().getTeam() != alliance)
+                if(board.getTile(i, currentCol).getPiece().getTeam() != alliance)
                     potentialPositions.add(new Position(i, currentCol));
                 break;
             }
