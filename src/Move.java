@@ -7,12 +7,12 @@ public class Move
         this.potentialPosition = position;
     }
 
-    public static void movePeice(Board board, Peice peice, Position newPosition)
+    public static void movePiece(Board board, Piece piece, Position newPosition)
     {
-        //Moves peice to new Location
-        board.getTile(newPosition.getRow(), newPosition.getCol()).setPeice(peice);
+        //Moves piece to new Location
+        board.getTile(newPosition.getRow(), newPosition.getCol()).setPiece(piece);
 
         //Clears pevious position
-        board.getTile(peice.getPosition().getRow(), peice.getPosition().getCol()).setPeice(null);
+        board.getTile(piece.getPosition().getRow(), piece.getPosition().getCol()).setPiece(null);
     }
 }

@@ -1,7 +1,7 @@
 import java.util.ArrayList;
 import java.util.List;
 
-public class Pawn extends Peice
+public class Pawn extends Piece
 {
 
     @Override
@@ -27,11 +27,11 @@ public class Pawn extends Peice
         if(currentCol != 0 && currentRow != 0 && currentRow != 7)
         {
             //Attack upLeft and downLeft
-            if(board.getTile(currentRow + direction, currentCol - 1).getPeice() != null && board.getTile(currentRow + direction, currentCol - 1).getPeice().getTeam() != alliance)
+            if(board.getTile(currentRow + direction, currentCol - 1).getPiece() != null && board.getTile(currentRow + direction, currentCol - 1).getPiece().getTeam() != alliance)
                 potentialPositions.add(new Position(currentRow + direction, currentCol - 1));
 
             //Attack upRight and downRight
-            if(board.getTile(currentRow + direction, currentCol + 1).getPeice() != null && board.getTile(currentRow + direction, currentCol + 1).getPeice().getTeam() != alliance)
+            if(board.getTile(currentRow + direction, currentCol + 1).getPiece() != null && board.getTile(currentRow + direction, currentCol + 1).getPiece().getTeam() != alliance)
                 potentialPositions.add(new Position(currentRow + direction, currentCol + 1));
         }
 
