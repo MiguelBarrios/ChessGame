@@ -1,3 +1,6 @@
 .idea/
 .vscode/
-*git .class
+*.class
+.DS_Store
+*.iml
+out/
