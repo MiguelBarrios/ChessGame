@@ -1,8 +1,6 @@
 import javax.swing.*;
 import java.awt.*;
 
-
-
 public class Board extends JPanel {
 
     public static Board board = new Board();
@@ -81,6 +79,45 @@ public class Board extends JPanel {
     {
         return tiles[pos.getRow()][pos.getCol()];
     }
+
+
+    public void resetSelectedTiles()
+    {
+        for(Tile[] row : tiles)
+        {
+            for(Tile tile : row)
+            {
+                tile.setSelected(false);
+            }
+        }
+    }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

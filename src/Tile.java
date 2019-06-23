@@ -2,7 +2,9 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 
 public class Tile extends JButton implements ActionListener
 {
@@ -12,7 +14,7 @@ public class Tile extends JButton implements ActionListener
 
     private static HashMap<Position, Tile> board;
     private Piece piece;
-    private boolean isSelected = true;
+    private boolean isSelected;
 
 
     public Tile(Position position, Piece piece) {
@@ -22,7 +24,7 @@ public class Tile extends JButton implements ActionListener
         this.setBorderPainted(false);
         this.setFocusPainted(false);
         this.setOpaque(true);
-        //this.isSelected = false;
+        this.isSelected = false;
         this.addActionListener(this);
     }
 
@@ -77,9 +79,16 @@ public class Tile extends JButton implements ActionListener
         return this.piece.team;
     }
 
+    @Override
+    public void setSelected(boolean selected)
+    {
+        isSelected = selected;
+    }
+
     public void actionPerformed(ActionEvent event)
     {
         System.out.println(position + " selected");
+
 
         if(this.isSelected && Movment.isReadyToMove())
         {
@@ -89,10 +98,30 @@ public class Tile extends JButton implements ActionListener
 
         if(this.piece != null)
         {
+            highlightSelectedTiles(this.getPiece().validMoves(this.position));
             Movment.setLastSelectedPeice(this);
+
         }
 
     }
+
+    public void highlightSelectedTiles(List potentialMoves)
+    {
+        Board board = Board.getInstance();
+
+        ArrayList<Position> list = new ArrayList<>(potentialMoves);
+
+        for(Position pos : list)
+        {
+            int row = pos.getRow();
+            int col = pos.getCol();
+
+            board.getTile(row,col).setSelected(true);
+        }
+    }
+
+
+
 
 
 }
