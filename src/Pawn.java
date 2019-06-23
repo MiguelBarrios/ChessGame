@@ -1,20 +1,45 @@
+import javax.imageio.ImageIO;
+import javax.swing.*;
+import java.awt.*;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
 public class Pawn extends Peice
 {
 
-    public Pawn(Position position, Team team)
+    public Pawn(Team team)
     {
-        this.position = position;
         this.team = team;
+
+        String name  = (team == Team.WHITE) ? "img/PawnW.png" : "img/PawnB.png";
+
+        Image img = null;
+        try
+        {
+            img = ImageIO.read(getClass().getResource(name));
+        }
+        catch (IOException e)
+        {
+            e.printStackTrace();
+        }
+
+        this.icon = new ImageIcon(img);
+
+
+    }
+
+    public void isSelected()
+    {
+        System.out.println("Pawn was selected");
     }
 
     @Override
-    public List<Position> validMoves(Board board)
+    public List<Position> validMoves(Position position)
     {
-        int currentRow = this.getPosition().getRow();
-        int currentCol = this.getPosition().getCol();
+        Board board = Board.getInstance();
+        int currentRow = position.getRow();
+        int currentCol = position.getCol();
         Team alliance = this.getTeam();
 
         List<Position> potentialPositions = new ArrayList<>();
@@ -26,7 +51,7 @@ public class Pawn extends Peice
         else
             direction = 1;
 
-        if(board.getTile(currentRow + direction, currentCol) == null)
+        if(board.getTile(currentRow + direction, currentCol).getPeice() == null)
             potentialPositions.add(new Position(currentRow + direction, currentCol));
 
 

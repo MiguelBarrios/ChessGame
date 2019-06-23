@@ -1,21 +1,38 @@
+import javax.imageio.ImageIO;
+import javax.swing.*;
+import java.awt.*;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
 public class Bishop extends Peice
 {
-    public Bishop(Position position, Team team)
+    public Bishop(Team team)
     {
-        this.position = position;
-
         this.team = team;
+
+        String name  = (team == Team.WHITE) ? "img/BishopW.png" : "img/BishopB.png";
+
+        Image img = null;
+        try
+        {
+            img = ImageIO.read(getClass().getResource(name));
+        }
+        catch (IOException e)
+        {
+            e.printStackTrace();
+        }
+
+        this.icon = new ImageIcon(img);
     }
 
 
     @Override
-    public List<Position> validMoves(Board board)
+    public List<Position> validMoves(Position position)
     {
-        int currentRow = this.position.getRow();
-        int currentCol = this.position.getCol();
+        Board board = Board.getInstance();
+        int currentRow = position.getRow();
+        int currentCol = position.getCol();
         Team alliance = this.getTeam();
 
         List<Position> potentialPositions = new ArrayList<>();

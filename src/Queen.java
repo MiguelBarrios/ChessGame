@@ -1,24 +1,40 @@
+import javax.imageio.ImageIO;
+import javax.swing.*;
+import java.awt.*;
+import java.io.IOException;
 import java.util.ArrayList;
-import java.util.List;
 
 public class Queen extends Peice
 {
-    public Queen(Position position, Team team)
+    public Queen(Team team)
     {
-        this.position = position;
-
         this.team = team;
+
+        String name  = (team == Team.WHITE) ? "img/QueenW.png" : "img/QueenB.png";
+
+        Image img = null;
+        try
+        {
+            img = ImageIO.read(getClass().getResource(name));
+        }
+        catch (IOException e)
+        {
+            e.printStackTrace();
+        }
+
+        this.icon = new ImageIcon(img);
     }
 
 
     @Override
-    public List<Position> validMoves(Board board)
+    public ArrayList<Position> validMoves(Position position)
     {
-        int currentRow = this.position.getRow();
-        int currentCol = this.position.getCol();
+        Board board = Board.getInstance();
+        int currentRow = position.getRow();
+        int currentCol = position.getCol();
         Team alliance = this.getTeam();
 
-        List<Position> potentialPositions = new ArrayList<>();
+        ArrayList<Position> potentialPositions = new ArrayList<>();
 
         // up and to the Right
         for(int row = currentRow - 1, col = currentCol + 1; row >= 0 && col < 8; --row, ++col)
