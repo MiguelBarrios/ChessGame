@@ -1,8 +1,9 @@
 import javax.swing.*;
 import java.util.List;
 
-public abstract class Peice
-{
+
+public abstract class Piece {
+    protected Position position;
     protected Team team;
 
     protected ImageIcon icon;

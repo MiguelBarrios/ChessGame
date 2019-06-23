@@ -4,7 +4,7 @@ import java.awt.*;
 import java.io.IOException;
 import java.util.ArrayList;
 
-public class King extends Peice
+public class King extends Piece
 {
     public King(Team team)
     {

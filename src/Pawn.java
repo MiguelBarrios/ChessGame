@@ -5,7 +5,7 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Pawn extends Peice
+public class Pawn extends Piece
 {
 
     public Pawn(Team team)
@@ -51,18 +51,18 @@ public class Pawn extends Peice
         else
             direction = 1;
 
-        if(board.getTile(currentRow + direction, currentCol).getPeice() == null)
+        if(board.getTile(currentRow + direction, currentCol).getPiece() == null)
             potentialPositions.add(new Position(currentRow + direction, currentCol));
 
 
         if(currentCol != 0 && currentRow != 0 && currentRow != 7)
         {
             //Attack upLeft and downLeft
-            if(board.getTile(currentRow + direction, currentCol - 1).getPeice() != null && board.getTile(currentRow + direction, currentCol - 1).getPeice().getTeam() != alliance)
+            if(board.getTile(currentRow + direction, currentCol - 1).getPiece() != null && board.getTile(currentRow + direction, currentCol - 1).getPiece().getTeam() != alliance)
                 potentialPositions.add(new Position(currentRow + direction, currentCol - 1));
 
             //Attack upRight and downRight
-            if(board.getTile(currentRow + direction, currentCol + 1).getPeice() != null && board.getTile(currentRow + direction, currentCol + 1).getPeice().getTeam() != alliance)
+            if(board.getTile(currentRow + direction, currentCol + 1).getPiece() != null && board.getTile(currentRow + direction, currentCol + 1).getPiece().getTeam() != alliance)
                 potentialPositions.add(new Position(currentRow + direction, currentCol + 1));
         }
 

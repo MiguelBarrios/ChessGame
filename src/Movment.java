@@ -13,8 +13,8 @@ public class Movment
     {
         if(lastSelectedPeice != null)
         {
-            Board.getInstance().getTile(tile.getPosition()).setPeice(lastSelectedPeice.getPeice());
-            Board.getInstance().getTile(lastSelectedPeice.getPosition()).setPeice(null);
+            Board.getInstance().getTile(tile.getPosition()).setPiece(lastSelectedPeice.getPiece());
+            Board.getInstance().getTile(lastSelectedPeice.getPosition()).setPiece(null);
             reset();
         }
     }
