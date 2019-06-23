@@ -31,6 +31,15 @@ public class Main
         return currentPlayer;
     }
 
+    public static void swichPlayer()
+    {
+        if(currentPlayer == Team.WHITE)
+            currentPlayer = Team.BLACK;
+        else
+            currentPlayer = Team.WHITE;
+    }
+
+
 
 
 

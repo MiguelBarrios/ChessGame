@@ -96,8 +96,9 @@ public class Tile extends JButton implements ActionListener
             Movment.move(this);
         }
 
-        if(this.piece != null)
+        if(this.piece != null && this.piece.team == Main.getCurrentPlayer())
         {
+            Board.getInstance().resetSelectedTiles();
             highlightSelectedTiles(this.getPiece().validMoves(this.position));
             Movment.setLastSelectedPeice(this);
 

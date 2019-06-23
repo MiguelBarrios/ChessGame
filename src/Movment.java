@@ -31,6 +31,7 @@ public class Movment
 
             reset();
             Board.getInstance().resetSelectedTiles();
+            Main.swichPlayer();
         }
     }
 
