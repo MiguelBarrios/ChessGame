@@ -1,5 +1,8 @@
-public class Movment
-{
+package game;
+
+import game.pieces.Piece;
+
+public class Movment {
     public static Tile lastSelectedPeice = null;
 
     public static Tile moveToTile = null;
@@ -30,8 +33,8 @@ public class Movment
             board.getTile(row, col).setPiece(one);
 
             reset();
-            Board.getInstance().resetSelectedTiles();
-            Main.swichPlayer();
+           // Board.getInstance().resetSelectedTiles();
+            // Main.swichPlayer();
         }
     }
 
