@@ -87,12 +87,9 @@ public class Tile extends JButton implements ActionListener
 
     public void actionPerformed(ActionEvent event)
     {
-        System.out.println(position + " selected");
-
 
         if(this.isSelected && Movment.isReadyToMove())
         {
-            System.out.println("reached");
             Movment.move(this);
         }
 

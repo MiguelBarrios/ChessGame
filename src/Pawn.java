@@ -11,7 +11,7 @@ public class Pawn extends Piece
     public Pawn(Team team)
     {
         this.team = team;
-
+        this.name = "Pawn";
         String name  = (team == Team.WHITE) ? "img/PawnW.png" : "img/PawnB.png";
 
         Image img = null;
@@ -25,8 +25,6 @@ public class Pawn extends Piece
         }
 
         this.icon = new ImageIcon(img);
-
-
     }
 
     public void isSelected()
@@ -52,8 +50,14 @@ public class Pawn extends Piece
             direction = 1;
 
         if(board.getTile(currentRow + direction, currentCol).getPiece() == null)
+        {
             potentialPositions.add(new Position(currentRow + direction, currentCol));
-
+            if(currentRow == 1 || currentRow == 6)
+        	{//initial 2 spot movment
+        		direction *= 2;
+        		potentialPositions.add(new Position(currentRow + direction, currentCol));
+        	}
+        }
 
         if(currentCol != 0 && currentRow != 0 && currentRow != 7)
         {
@@ -65,10 +69,6 @@ public class Pawn extends Piece
             if(board.getTile(currentRow + direction, currentCol + 1).getPiece() != null && board.getTile(currentRow + direction, currentCol + 1).getPiece().getTeam() != alliance)
                 potentialPositions.add(new Position(currentRow + direction, currentCol + 1));
         }
-
-
-        //TODO:  ADD END OF BOARD PROMOTION
-
 
         return potentialPositions;
     }

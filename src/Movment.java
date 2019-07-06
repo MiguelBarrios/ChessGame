@@ -29,10 +29,20 @@ public class Movment
 
             board.getTile(row, col).setPiece(one);
 
+                        //End of board promotion for pawns
+            if(tile.getPiece().name != null)
+            {
+                if(tile.getPiece().name.equals("Pawn") && tile.getPosition().getCol() == 0 || tile.getPosition().getCol() == 7)
+                {
+                    System.out.println("End of board Promotion activated");
+                }
+            }
+
             reset();
             Board.getInstance().resetSelectedTiles();
             Main.swichPlayer();
         }
+
     }
 
     public static void reset()

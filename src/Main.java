@@ -18,12 +18,6 @@ public class Main
     public static void startGame()
     {
         Team currentPlayer = Team.WHITE;
-
-
-        while(true)
-        {
-
-        }
     }
 
     public static Team getCurrentPlayer()
@@ -38,10 +32,5 @@ public class Main
         else
             currentPlayer = Team.WHITE;
     }
-
-
-
-
-
 
 }
