@@ -70,7 +70,8 @@ public class SideBar extends JPanel
             @Override
             public void actionPerformed(ActionEvent e)
             {
-                //Main.startNewGame();
+                Board.getInstance().resetBoard();
+                resetTime();
             }
         });
     }
@@ -106,6 +107,16 @@ public class SideBar extends JPanel
     {
         ++totalTimePassed;
         timePassedLable.setText(longToDate(totalTimePassed));
+    }
+
+    private void resetTime()
+    {
+        totalTimePassed = 0;
+        totalTimeWhite = 0;
+        totalTimeBlack = 0;
+        updateBlackPlayerTime();
+        updateBlackPlayerTime();
+        updateTotalTime();
     }
 
     private String longToDate(long totalSeconds)

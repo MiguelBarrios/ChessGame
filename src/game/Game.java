@@ -11,10 +11,10 @@ import java.util.Set;
 
 public class Game implements ActionListener {
     private static Team currentPlayer;
-    private JLabel banner;
+    private static JLabel banner;
     private JPanel sideBar;
     private Piece selected;
-    Board board;
+    private Board board;
 
     public Game()
     {
@@ -67,6 +67,12 @@ public class Game implements ActionListener {
     public static Team getCurrentPlayer() {
         return currentPlayer;
     }
+
+    public static void reset()
+    {
+        currentPlayer = Team.WHITE;
+        banner.setText("WHITE'S TURN");
+    }
     
     private void addMoveListener() {
         for (Tile[] row : board.getTiles()) {
@@ -75,6 +81,7 @@ public class Game implements ActionListener {
             }
         }
     }
+
 
     @Override
     public void actionPerformed(ActionEvent e) {

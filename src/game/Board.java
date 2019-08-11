@@ -35,6 +35,19 @@ public class Board extends JPanel {
         resetBackground();
     }
 
+    public void resetBoard()
+    {
+        Game.reset();
+        initializeBoard();
+        for(int row = 2; row <= 5; ++row)
+        {
+            for(int col = 0; col < 8; ++col)
+            {
+                board.getTile(row,col).removePiece();
+            }
+        }
+    }
+
     public void initializeBoard() {
         //Pawns
         for (int i = 0; i < SPAN; i++) {
