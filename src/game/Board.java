@@ -10,10 +10,9 @@ public class Board extends JPanel {
 
     public static Board board = new Board();
     private static final long serialVersionUID = 1L;
-    private static final Color LIGHT_GREEN = new Color(208, 240, 192);
-    private static final Color DARK_GREEN = new Color(152, 251, 152);
-    private static final Color LIGHT_RED = new Color(255, 110, 110);
-    private static final Color DARK_RED = new Color(252, 61, 51);
+    private static final Color LIGHT_YELLOW = new Color(229, 195, 50);
+    private static final Color BURNT_ORANGE = new Color(222, 155, 42);
+
     private static final int SPAN = 8;
     private Tile[][] tiles;
 
@@ -46,6 +45,7 @@ public class Board extends JPanel {
                 board.getTile(row,col).removePiece();
             }
         }
+        resetBackground();
     }
 
     public void initializeBoard() {
@@ -92,8 +92,10 @@ public class Board extends JPanel {
         }
     }
 
-    public void addSelectedBackground(Tile tile) { 
-        if (tile.isEmpty()) {
+    public void addSelectedBackground(Tile tile)
+    {
+        if (tile.isEmpty())
+        {
             return;
         }
 
@@ -104,29 +106,76 @@ public class Board extends JPanel {
         int col;
         Color bg;
 
-        if (selected.getTeam() == Team.WHITE) {
-            tile.update(LIGHT_GREEN, DARK_GREEN);
-        } else {
-            tile.update(LIGHT_RED, DARK_RED);
+        if(selected.getTeam() == Game.getCurrentPlayer())
+        {
+            tile.update(LIGHT_YELLOW, BURNT_ORANGE);
         }
 
-        for (Position p : selected.getValidPositions()) {
+        for (Position p : selected.getValidPositions())
+        {
             row = p.getRow();
             col = p.getCol();
-            if (selected.getTeam() == Team.WHITE) {
-                bg = ((row + col) % 2 == 0) ? LIGHT_GREEN : DARK_GREEN;
-            } else {
-                bg = ((row + col) % 2 == 0) ? LIGHT_RED : DARK_RED;
+
+            if(selected.getTeam() == Game.getCurrentPlayer())
+            {
+                bg = ((row + col) % 2 == 0) ? LIGHT_YELLOW : BURNT_ORANGE;
+                tiles[row][col].setBackground(bg);
             }
-            tiles[row][col].setBackground(bg);
+
         }
     }
 
-    public boolean movePiece(Move move) {
-        Piece piece = tiles[move.getStart().getRow()][move.getStart().getCol()].removePiece();
-        tiles[move.getEnd().getRow()][move.getEnd().getCol()].setPiece(piece);
+    public boolean movePiece(Move move)
+    {
+        int startRow = move.getStart().getRow();
+        int startCol = move.getStart().getCol();
+        int endRow = move.getEnd().getRow();
+        int endCol = move.getEnd().getCol();
+
+        Piece temp = tiles[startRow][startCol].getPiece();
+        if(temp instanceof Pawn)
+        {
+            Piece defender = tiles[startRow][endCol].getPiece();
+            if(defender instanceof Pawn && ((Pawn) defender).getEnPassantFlag() && defender.getTeam() != temp.getTeam())
+            {
+                tiles[startRow][endCol].removePiece();
+            }
+        }
+
+
+        Piece piece = tiles[startRow][startCol].removePiece();
+        tiles[endRow][endCol].setPiece(piece);
+
+        if(piece instanceof Pawn)
+        {
+            if(endRow == 0 || endRow == 7)
+                endOfBoardPromotion(move);
+
+            Pawn pawn = (Pawn)tiles[endRow][endCol].getPiece();
+
+            //remove en passant capture flag
+            if(pawn.getEnPassantFlag())
+                pawn.setEnPassantCapture(false);
+
+            //set en passant capture flag
+            if(Game.getCurrentPlayer() == Team.WHITE && startRow == 6 && endRow == 4 || Game.getCurrentPlayer() == Team.BLACK && startRow == 1 && endRow == 3)
+                pawn.setEnPassantCapture(true);
+
+        }
+
         resetBackground();
         return true;
+    }
+
+    private void endOfBoardPromotion(Move move)
+    {
+        Piece newPiece;
+        if(Game.getCurrentPlayer() == Team.WHITE)
+            newPiece = new Queen(Team.WHITE);
+        else
+            newPiece = new Queen(Team.BLACK);
+
+        tiles[move.getEnd().getRow()][move.getEnd().getCol()].setPiece(newPiece);
     }
 
     public static Board getInstance() {
@@ -148,4 +197,5 @@ public class Board extends JPanel {
     public Tile[][] getTiles() {
         return tiles;
     }
+
 }
