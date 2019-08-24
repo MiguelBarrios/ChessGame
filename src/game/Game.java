@@ -20,7 +20,7 @@ public class Game implements ActionListener {
     {
         JFrame frame = new JFrame("Best Chess Game");
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        frame.setSize(820, 680);
+        frame.setSize(860, 750);
         board = Board.getInstance();
         board.setPreferredSize(new Dimension(640,680));
         sideBar = new SideBar();
@@ -34,7 +34,7 @@ public class Game implements ActionListener {
         banner.setAlignmentX(JLabel.CENTER_ALIGNMENT);
         banner.setFont(new Font("Arial", Font.BOLD, 24));
         banner.setPreferredSize(new Dimension(640, 40));
-        
+
         GridBagConstraints c = new GridBagConstraints();
         c.gridx = 0;
         c.gridy = 0;
@@ -52,6 +52,7 @@ public class Game implements ActionListener {
         
         frame.add(ui);
         frame.setVisible(true);
+        frame.setResizable(false);
 
         selected = null;
         currentPlayer = null;

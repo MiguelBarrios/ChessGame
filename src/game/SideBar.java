@@ -1,5 +1,7 @@
 package game;
+
 import javax.swing.*;
+import javax.swing.border.Border;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -15,10 +17,14 @@ public class SideBar extends JPanel
     private static JLabel white;
     private static JLabel black;
 
+    Border blackline = BorderFactory.createLineBorder(Color.black,5);
+
+
     public SideBar()
     {
         startTime();
-        this.setBackground(Color.GRAY);
+
+        this.setBackground(new Color(72,124,70));
         this.setLayout(new GridBagLayout());
         GridBagConstraints c = new GridBagConstraints();
 
@@ -28,7 +34,7 @@ public class SideBar extends JPanel
         c.gridx = 0;
         c.gridy = 0;
         c.gridwidth = 2;
-        c.insets = new Insets(200,0,0,0);
+        c.insets = new Insets(205,0,0,0);
         this.add(timeHeader,c);
 
         timePassedLable = new JLabel("00:00:00");
@@ -58,12 +64,14 @@ public class SideBar extends JPanel
         c.gridx = 0;
         c.gridwidth = 1;
         c.gridy = 4;
-        c.insets = new Insets(0,15,150,0);
+        c.insets = new Insets(0,15,145,0);
         this.add(undo,c);
 
         JButton restart = new JButton("New Game");
         c.gridx = 1;
         this.add(restart,c);
+
+        this.setBorder(blackline);
 
         restart.addActionListener(new ActionListener()
         {

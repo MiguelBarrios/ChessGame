@@ -54,7 +54,7 @@ public class Tile extends JButton {
     }
 
     public void update() {
-        setBackground(((pos.getRow() + pos.getCol()) % 2 == 0) ? Color.WHITE : Color.GRAY);
+        setBackground(((pos.getRow() + pos.getCol()) % 2 == 0) ? Color.WHITE : new Color(72,124,72));
     }
 
     public void update(Color light, Color dark) {
