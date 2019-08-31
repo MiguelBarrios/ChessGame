@@ -3,6 +3,7 @@ package game;
 import game.util.Position;
 
 public class Move {
+
     private final Position start;
     private final Position end;
 
@@ -17,5 +18,10 @@ public class Move {
 
     public Position getEnd() {
         return new Position(end);
+    }
+
+    public String toString()
+    {
+        return start.toString() + " " + end.toString();
     }
 }

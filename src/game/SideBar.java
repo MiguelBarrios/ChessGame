@@ -82,6 +82,16 @@ public class SideBar extends JPanel
                 resetTime();
             }
         });
+
+        undo.addActionListener(new ActionListener()
+        {
+            @Override
+            public void actionPerformed(ActionEvent e)
+            {
+                if(!PastMove.isEmpty())
+                    Board.getInstance().undo(PastMove.getLastMove());
+            }
+        });
     }
 
     private void startTime()

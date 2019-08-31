@@ -33,7 +33,7 @@ public class Position {
 
     @Override
     public String toString() {
-        return "Tile: " + row + " " + col;
+        return row + " " + col;
     }
 
     @Override
@@ -49,5 +49,7 @@ public class Position {
     public int hashCode() {
         return this.toString().hashCode();
     }
+
+
 
 }

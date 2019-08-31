@@ -4,7 +4,13 @@ import game.Board;
 import game.Team;
 import game.util.Position;
 
-public class  King extends Piece {
+import java.util.HashSet;
+import java.util.Set;
+
+public class  King extends Piece
+{
+    protected Set<Piece> inCheckBy;
+
     public King(Team team) {
         super(team);
         setIcon((team == Team.WHITE) ? "img/KingW.png" : "img/KingB.png");
@@ -12,7 +18,6 @@ public class  King extends Piece {
 
     @Override
     public void findValidPositions() {
-        validPositions.clear();
 
         // up
         kingMoveHelper(-1, 0);
@@ -45,4 +50,22 @@ public class  King extends Piece {
             }
         }
     }
+
+    public boolean isInCheck()
+    {
+        return inCheckBy.size() != 0;
+    }
+
+
+    public void newAttackList()
+    {
+        inCheckBy = new HashSet<>();
+    }
+
+    public void addAttacker(Piece piece)
+    {
+        inCheckBy.add(piece);
+    }
+
+
 }

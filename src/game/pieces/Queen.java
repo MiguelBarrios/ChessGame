@@ -35,4 +35,6 @@ public class Queen extends Piece {
         validMovesHelper(0, -1);
     }
 
+
+
 }

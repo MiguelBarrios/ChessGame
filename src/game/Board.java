@@ -78,8 +78,8 @@ public class Board extends JPanel {
         tiles[0][3].setPiece(new Queen(Team.BLACK));
 
         //King
-        tiles[0][4].setPiece(new King(Team.BLACK));
-        tiles[7][4].setPiece(new King(Team.WHITE));
+        tiles[0][4].setPiece(Game.getBlackKing());
+        tiles[7][4].setPiece(Game.getWhiteKing());
 
         System.out.println("Board Initialized");
     }
@@ -127,6 +127,7 @@ public class Board extends JPanel {
 
     public boolean movePiece(Move move)
     {
+        saveMove(move);
         int startRow = move.getStart().getRow();
         int startCol = move.getStart().getCol();
         int endRow = move.getEnd().getRow();
@@ -141,7 +142,6 @@ public class Board extends JPanel {
                 tiles[startRow][endCol].removePiece();
             }
         }
-
 
         Piece piece = tiles[startRow][startCol].removePiece();
         tiles[endRow][endCol].setPiece(piece);
@@ -165,6 +165,44 @@ public class Board extends JPanel {
 
         resetBackground();
         return true;
+    }
+
+    public void undo(String lastMove)
+    {
+        String[] arr = lastMove.split(" ");
+        int startrow = Integer.valueOf(arr[0]);
+        int startcol = Integer.valueOf(arr[1]);
+        int endrow = Integer.valueOf(arr[2]);
+        int endcol = Integer.valueOf(arr[3]);
+
+        Piece piece = tiles[endrow][endcol].getPiece();
+        tiles[endrow][endcol].removePiece();
+        tiles[startrow][startcol].setPiece(piece);
+
+        if(arr.length == 6)
+        {
+            Piece defender = Piece.findPiece(arr[4], arr[5]);
+            tiles[endrow][endcol].setPiece(defender);
+        }
+
+        Game.switchPlayer();
+        resetBackground();
+    }
+
+    private void saveMove(Move move)
+    {
+        PastMove one;
+
+        if(getTile(move.getEnd()).getPiece() == null)
+        {
+            one = new PastMove(move);
+        }
+        else
+        {
+            Piece piece = getTile(move.getEnd()).getPiece();
+            one = new PastMove(move, piece);
+        }
+
     }
 
     private void endOfBoardPromotion(Move move)

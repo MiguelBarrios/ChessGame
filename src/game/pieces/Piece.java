@@ -85,4 +85,38 @@ public abstract class Piece {
         findValidPositions();
         return new HashSet<Position>(validPositions);
     }
+
+    public static Piece findPiece(String piece, String team)
+    {
+        Piece newPiece;
+        Team newTeam = (team.equals("White")) ? Team.WHITE : Team.BLACK;
+
+
+        if(piece.equals("Pawn"))
+        {
+            return new Pawn(newTeam);
+        }
+        else if(piece.equals("Rook"))
+        {
+            return new Rook(newTeam);
+        }
+        else if(piece.equals("Bishop"))
+        {
+            return new Bishop(newTeam);
+        }
+        else if(piece.equals("Knight"))
+        {
+            return new Knight(newTeam);
+        }
+        else if(piece.equals("Bishop"))
+        {
+            return new Bishop(newTeam);
+        }
+        else if(piece.equals("Knight"))
+        {
+            return new Knight(newTeam);
+        }
+
+        return null;
+    }
 }
